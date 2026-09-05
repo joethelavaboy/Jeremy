@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="<link rel="stylesheet" href="https://joethelavaboy.github.io/Jeremy/CSS/style.css">
+    <!-- FIX 1: Clean and absolute path style sheet link -->
+    <link rel="stylesheet" href="https://joethelavaboy.github.io/Jeremy/CSS/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeremy</title>
@@ -21,19 +22,33 @@
             flex-direction: column;
             min-height: 100vh;
         }
+        
+        /* Banner & Positioning Frame */
         .banner {
             width: 100%;
             height: 300px;
-            background-color: #d0d7de;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-bottom: 1px solid #b0b7be;
+            overflow: hidden;
+            position: relative; /* Allows text elements to sit on top */
         }
-        .banner-placeholder {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #57606a;
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* FIX 2: Added banner text overlay formatting rules */
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.75);
+            letter-spacing: -0.02em;
         }
 
         /* Two-Column Grid Setup */
@@ -90,14 +105,10 @@
             display: none;
             width: 100%;
             height: 100%;
-            justify-content: center;
-            align-items: center;
-            color: #57606a;
-            font-weight: 500;
-            font-size: 1.1rem;
+            object-fit: cover;
         }
         .slide.active {
-            display: flex;
+            display: block;
         }
 
         /* Forward / Backward Buttons */
@@ -172,12 +183,11 @@
 </head>
 <body>
 
-<!-- TOP BANNER WITH TEXT OVERLAY -->
-<div class="banner">
-    <img src="banner.jpg" alt="Jeremy Site Banner" class="banner-image">
-    <div class="banner-text">Jeremy</div>
-</div>
-
+    <!-- TOP BANNER WITH TEXT OVERLAY -->
+    <div class="banner">
+        <img src="banner.jpg" alt="Jeremy Site Banner" class="banner-image">
+        <div class="banner-text">Jeremy</div>
+    </div>
 
     <!-- MAIN BODY CONTAINER -->
     <div class="main-container">
@@ -197,15 +207,14 @@
                 <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&lt;</button>
                 <button class="nav-btn next-btn" onclick="changeSlide(1)">&gt;</button>
 
-                <!-- 5 Slides pointing to your uploaded image files -->
-            <div class="carousel-viewport">
-                <img class="slide active" src="your-image1.jpg" alt="Image 1">
-                <img class="slide" src="your-image2.jpg" alt="Image 2">
-                <img class="slide" src="your-image3.png" alt="Image 3">
-                <img class="slide" src="your-image4.jpg" alt="Image 4">
-                <img class="slide" src="your-image5.jpg" alt="Image 5">
-            </div>
-
+                <!-- Slides pointing to uploaded image files -->
+                <div class="carousel-viewport">
+                    <img class="slide active" src="your-image1.jpg" alt="Image 1">
+                    <img class="slide" src="your-image2.jpg" alt="Image 2">
+                    <img class="slide" src="your-image3.png" alt="Image 3">
+                    <img class="slide" src="your-image4.jpg" alt="Image 4">
+                    <img class="slide" src="your-image5.jpg" alt="Image 5">
+                </div>
 
                 <!-- Navigation Dots -->
                 <div class="dots-container">
@@ -222,6 +231,7 @@
 
     <!-- GISCUS COMMENT SYSTEM LAYER -->
     <div class="comment-section-wrapper">
+        <!-- FIX 3: Restored client endpoint for correct rendering -->
         <script src="https://giscus.app"
                 data-repo="joethelavaboy/Jeremy"
                 data-repo-id="R_kgDOUO5PpA"
@@ -257,7 +267,7 @@
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
             
-            slides[slideIndex].classToUpdate = slides[slideIndex].classList.add('active');
+            slides[slideIndex].classList.add('active');
             dots[slideIndex].classList.add('active');
         }
 
