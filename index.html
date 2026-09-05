@@ -1,329 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://joethelavaboy.github.io/Jeremy/CSS/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-    <title>Jeremy</title>
-    <style>
-        box-sizing: border-box;
-         margin: 0;
-         padding: 0;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f6f8fa;
-            color: #24292f;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeremy</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #202124;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+    }
 
-        /* NAVIGATION BAR STYLES */
-        .nav-bar {
-            width: 100%;
-            background-color: #ffffff;
-            border-bottom: 1px solid #d0d7de;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .nav-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 1.5rem;
-        }
-        .search-box {
-            width: 300px;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #57606a;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.2s ease;
-        }
-        .nav-links a:hover {
-            color: #0969da;
-        }
-        
-        /* BANNER HEADER STYLES */
-        .banner {
-            width: 100%;
-            height: 300px;
-            border-bottom: 1px solid #b0b7be;
-            overflow: hidden;
-            position: relative;
-        }
-        .banner-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        .banner-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff;
-            font-size: 3rem;
-            font-weight: 800;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.75);
-            letter-spacing: -0.02em;
-        }
+    /* Mobile Frame Container */
+    .site-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
 
-        /* MAIN TWO-COLUMN SPLIT GRID */
-        .main-container {
-            max-width: 1000px;
-            width: 100%;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-            display: flex;
-            gap: 3rem;
-            flex: 1;
-        }
-        .left-column {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-        .right-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
+    /* Top Navigation Bar */
+    .nav-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 10;
+      color: #ffffff;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .site-title-handwritten {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-        /* TEXT AND CAROUSEL STYLES */
-        .text-block h1 {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-        }
-        .text-block p {
-            font-size: 1.1rem;
-            color: #57606a;
-        }
-        .carousel-box {
-            background-color: #ffffff;
-            border: 1px solid #d0d7de;
-            border-radius: 8px;
-            padding: 1.5rem;
-            width: 100%;
-            position: relative;
-        }
-        .carousel-viewport {
-            width: 100%;
-            height: 250px;
-            background-color: #eaeef2;
-            border-radius: 6px;
-            position: relative;
-            overflow: hidden;
-        }
-        .slide {
-            display: none;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .slide.active {
-            display: block;
-        }
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(9, 105, 218, 0.85);
-            color: #ffffff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.25rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.2s;
-            z-index: 10;
-        }
-        .nav-btn:hover {
-            background-color: rgba(12, 87, 208, 1);
-        }
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
-        .dots-container {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #d0d7de;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .dot.active {
-            background-color: #0969da;
-        }
+    /* Hero Header Section */
+    .hero {
+      position: relative;
+      height: 240px;
+      background: #3a3f47;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* Placeholder graphic representing the globe/stars background */
+    .hero-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
 
-        /* BOTTOM DISCUSSION AREA */
-        .comment-section-wrapper {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto 3rem auto;
-            padding: 0 1.5rem;
-        }
-        footer {
-            background-color: #ffffff;
-            border-top: 1px solid #d0d7de;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.85rem;
-            color: #57606a;
-            margin-top: auto;
-        }
+    /* Content Area */
+    .content {
+      padding: 32px 24px;
+    }
+    .main-heading {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #202124;
+      margin-bottom: 24px;
+    }
 
-        /* RESPONSIVE LAYOUT SCALING FOR PHONES */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column-reverse;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            .search-box { width: 100%; }
-            .main-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            .banner { height: 200px; }
-        }
-    </style>
+    /* Image Carousel Component */
+    .carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #3a3f47;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .carousel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .carousel-btn.left { left: 12px; }
+    .carousel-btn.right { right: 12px; }
+
+    /* Carousel Navigation Dots */
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #cccccc;
+    }
+    .dot.active {
+      background-color: #3b719f;
+    }
+
+    /* Footer Section */
+    .footer {
+      background-color: #3b719f;
+      color: #ffffff;
+      padding: 28px 24px 48px 24px;
+      position: relative;
+    }
+    .footer-text {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .info-btn {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- NAVIGATION BAR WITH YOUR PERSONAL SEARCH WIDGET -->
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <div class="search-box">
-                <div class="gcse-search"></div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="https://joethelavaboy.github.io/Jeremy/Discussions/">Discussions</a></li>
-                <li><a href="https://joethelavaboy.github.io/Jeremy/Help/">Help</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- TOP HEADER BANNER IMAGE -->
-    <div class="banner">
-        <img src="banner.jpg" alt="Jeremy Site Banner" class="banner-image">
-        <div class="banner-text">Jeremy</div>
+  <div class="site-container">
+    <div class="nav-bar">
+      <div class="nav-left">
+        <button class="icon-btn">&#9776;</button>
+        <span class="site-title-handwritten">Jeremy</span>
+      </div>
+      <button class="icon-btn">&#128093;</button>
     </div>
 
-    <!-- MAIN FRAME CONTAINER -->
-    <div class="main-container">
-        
-        <!-- LEFT COLUMN: ORIGINAL SITE DESCRIPTION -->
-        <div class="left-column">
-            <div class="text-block">
-                <h1>Jeremy</h1>
-                <p>Explorer the adventures and fun in Jeremy</p>
-            </div>
-        </div>
-        
-        <!-- RIGHT COLUMN: IMAGE SLIDER -->
-        <div class="right-column">
-            <div class="carousel-box">
-                <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&lt;</button>
-                <button class="nav-btn next-btn" onclick="changeSlide(1)">&gt;</button>
-
-                <div class="carousel-viewport">
-                    <img class="slide active" src="https://joethelavaboy.github.io/Jeremy/images/jimmys.png" alt="Image 1">
-                    <img class="slide" src="your-image2.jpg" alt="Image 2">
-                    <img class="slide" src="your-image3.png" alt="Image 3">
-                    <img class="slide" src="your-image4.jpg" alt="Image 4">
-                    <img class="slide" src="your-image5.jpg" alt="Image 5">
-                </div>
-
-                <div class="dots-container">
-                    <div class="dot active" onclick="currentSlide(0)"></div>
-                    <div class="dot" onclick="currentSlide(1)"></div>
-                    <div class="dot" onclick="currentSlide(2)"></div>
-                    <div class="dot" onclick="currentSlide(3)"></div>
-                    <div class="dot" onclick="currentSlide(4)"></div>
-                </div>
-            </div>
-        </div>
-
+    <div class="hero">
+      <h1 class="hero-title">Jeremy</h1>
     </div>
 
-    <!-- PERSISTENT GISCUS COMMENT PLUG -->
-    <div class="comment-section-wrapper">
-        <script src="https://giscus.app"
-                data-repo="joethelavaboy/Jeremy"
-                data-repo-id="R_kgDOUO5PpA"
-                data-category="General"
-                data-category-id="DIC_kwDOUO5PpM4DE6cp"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="light"
-                data-lang="en"
-                crossorigin="anonymous"
-                async>
-        </script>
+    <div class="content">
+      <h2 class="main-heading">Explorer the adventures and fun in Jeremy</h2>
+
+      <div class="carousel">
+        <button class="carousel-btn left">&#10094;</button>
+        <button class="carousel-btn right">&#10095;</button>
+      </div>
+
+      <div class="dots-container">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
     </div>
 
-    <!-- SITE BASE FOOTER -->
-    <footer>
-        <p>Jeremy By Joe the lava boy LLC ™</p>
-    </footer>
+    <div class="footer">
+      <p class="footer-text">Jeremy By Joe the lava boy LLC™</p>
+      <button class="info-btn">i</button>
+    </div>
+  </div>
 
-    <!-- RUNTIME INTERACTIONS CONTROLLER SCRIPT -->
-    <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-
-        function showSlide(index) {
-            if (index >= slides.length) slideIndex = 0;
-            if (index < 0) slideIndex = slides.length - 1;
-            
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
-        }
-
-        function changeSlide(n) {
-            slideIndex += n;
-            showSlide(slideIndex);
-        }
-
-        function currentSlide(n) {
-            slideIndex = n;
-            showSlide(slideIndex);
-        }
-    </script>
 </body>
 </html>
