@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Website</title>
+    <title>Jeremy</title>
     <style>
-        /* Modern Reset and Base Setup */
+        /* Base Setup */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,8 +20,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-
-        /* Top Banner Container */
         .banner {
             width: 100%;
             height: 300px;
@@ -37,7 +35,7 @@
             color: #57606a;
         }
 
-        /* Main Content Split Layout */
+        /* Two-Column Grid Setup */
         .main-container {
             max-width: 1000px;
             width: 100%;
@@ -50,17 +48,17 @@
         .left-column {
             flex: 1;
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            justify-content: center;
+            align-items: flex-start;
         }
         .right-column {
             flex: 1;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        /* Content Text and Description Block */
+        /* Original Text Styles */
         .text-block h1 {
             font-size: 2.25rem;
             margin-bottom: 1rem;
@@ -70,48 +68,88 @@
             color: #57606a;
         }
 
-        /* Action Buttons and Showcase Images */
-        .showcase-box {
+        /* Interactive Carousel Elements */
+        .carousel-box {
             background-color: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 8px;
             padding: 1.5rem;
             width: 100%;
-            text-align: center;
+            position: relative;
         }
-        .image-placeholder {
+        .carousel-viewport {
             width: 100%;
-            height: 200px;
+            height: 250px;
             background-color: #eaeef2;
             border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            color: #57606a;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        .slide.active {
+            display: flex;
+        }
+
+        /* Forward / Backward Buttons */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(9, 105, 218, 0.85);
+            color: #ffffff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1.5rem;
-            color: #57606a;
-            font-weight: 500;
+            transition: background-color 0.2s;
+            z-index: 10;
         }
-        .button-group {
+        .nav-btn:hover {
+            background-color: rgba(12, 87, 208, 1);
+        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* Indicator Dots */
+        .dots-container {
             display: flex;
-            gap: 1rem;
             justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
-        .action-btn {
-            background-color: #0969da;
-            color: #ffffff;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 6px;
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #d0d7de;
+            border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        .action-btn:hover {
-            background-color: #0c57d0;
+        .dot.active {
+            background-color: #0969da;
         }
 
-        /* Bottom Copyright Footer */
+        .comment-section-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto 3rem auto;
+            padding: 0 1.5rem;
+        }
         footer {
             background-color: #ffffff;
             border-top: 1px solid #d0d7de;
@@ -122,15 +160,12 @@
             margin-top: auto;
         }
 
-        /* Responsive design for tablets/phones */
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
                 gap: 2rem;
             }
-            .banner {
-                height: 200px;
-            }
+            .banner { height: 200px; }
         }
     </style>
 </head>
@@ -144,31 +179,94 @@
     <!-- MAIN BODY CONTAINER -->
     <div class="main-container">
         
-        <!-- LEFT COLUMN: PHOTO SHOWCASE & SEE OTHERS BUTTONS -->
+        <!-- LEFT COLUMN: ORIGINAL WEBSITE TEXT DESCRIPTION -->
         <div class="left-column">
-            <div class="showcase-box">
-                <div class="image-placeholder">Showcase Image Placeholder</div>
-                <div class="button-group">
-                    <button class="action-btn">See Others Option 1</button>
-                    <button class="action-btn">See Others Option 2</button>
-                </div>
+            <div class="text-block">
+                <h1>Jeremy</h1>
+                <p>Explorer the adventures and fun in Jeremy</p>
             </div>
         </div>
-
-        <!-- RIGHT COLUMN: PLACEHOLDER TEXT DESCRIPTION -->
+        
+        <!-- RIGHT COLUMN: IMAGE SCROLLER -->
         <div class="right-column">
-            <div class="text-block">
-                <h1>Website Title</h1>
-                <p>This is your right-side placeholder text block. You can write your descriptions, updates, introductions, or any secondary informational content here. It scales cleanly on both monitors and mobile screens.</p>
+            <div class="carousel-box">
+                <!-- Navigation Buttons -->
+                <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&lt;</button>
+                <button class="nav-btn next-btn" onclick="changeSlide(1)">&gt;</button>
+
+                <!-- 5 Placeholder Slides -->
+                <div class="carousel-viewport">
+                    <div class="slide active">Image Placeholder 1</div>
+                    <div class="slide">Image Placeholder 2</div>
+                    <div class="slide">Image Placeholder 3</div>
+                    <div class="slide">Image Placeholder 4</div>
+                    <div class="slide">Image Placeholder 5</div>
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="dots-container">
+                    <div class="dot active" onclick="currentSlide(0)"></div>
+                    <div class="dot" onclick="currentSlide(1)"></div>
+                    <div class="dot" onclick="currentSlide(2)"></div>
+                    <div class="dot" onclick="currentSlide(3)"></div>
+                    <div class="dot" onclick="currentSlide(4)"></div>
+                </div>
             </div>
         </div>
 
     </div>
 
+    <!-- GISCUS COMMENT SYSTEM LAYER -->
+    <div class="comment-section-wrapper">
+        <script src="https://giscus.app"
+                data-repo="joethelavaboy/Jeremy"
+                data-repo-id="R_kgDOUO5PpA"
+                data-category="General"
+                data-category-id="DIC_kwDOUO5PpM4DE6cp"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="light"
+                data-lang="en"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+
     <!-- COPYRIGHT FOOTER -->
     <footer>
-        <p>&copy; 2026 Your Name / Company Name LLC. All Rights Reserved.</p>
+        <p>Jeremy By Joe the lava boy LLC ™</p>
     </footer>
+
+    <!-- SCROLLER INTERACTION SCRIPT -->
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            if (index >= slides.length) slideIndex = 0;
+            if (index < 0) slideIndex = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[slideIndex].classToUpdate = slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        function changeSlide(n) {
+            slideIndex += n;
+            showSlide(slideIndex);
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlide(slideIndex);
+        }
+    </script>
 
 </body>
 </html>
