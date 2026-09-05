@@ -3,71 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Jeremy</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
             background-color: #f6f8fa;
             color: #24292f;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header {
+            background-color: #ffffff;
             border-bottom: 1px solid #d0d7de;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
         }
-        main {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 6px;
-            border: 1px solid #d0d7de;
-            margin-bottom: 2rem;
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
         }
-        h1 { margin-top: 0; }
-        .comment-section {
+        .site-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #24292f;
+            text-decoration: none;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #57606a;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        nav a.active {
+            color: #0969da;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 4rem 1.5rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+        }
+        .main-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+        .discussion-card {
             background: #ffffff;
-            padding: 2rem;
-            border-radius: 6px;
             border: 1px solid #d0d7de;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #d0d7de;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            color: #57606a;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVIGATION BAR -->
     <header>
-        <h1>Welcome to My Website</h1>
+        <div class="nav-container">
+            <a href="#" class="site-logo">Jeremy</a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Discussions</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <h2>About This Page</h2>
-        <p>This website is hosted completely free on GitHub Pages! Because it runs on a real URL, comments will save permanently and refresh perfectly.</p>
-    </main>
-
-    <!-- COMMENT SECTION CONTAINER -->
-    <section class="comment-section">
-        <h3>Discussion</h3>
-        
-        <!-- REPLACE THE SCRIPT BELOW WITH YOUR ACTUAL GISCUS CODE -->
-     <script src="https://giscus.app/client.js"
-        data-repo="joethelavaboy/Jeremy"
-        data-repo-id="R_kgDOUO5PpA"
-        data-category="General"
-        data-category-id="DIC_kwDOUO5PpM4DE6cp"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-        
+    <!-- HERO HEADER SECTION -->
+    <section class="hero">
+        <h1>Jeremy</h1>
+        <p>Explorer the adventures and fun in Jeremy</p>
     </section>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="main-container">
+        
+        <!-- GISCUS COMMENT SYSTEM -->
+        <section class="discussion-card">
+            <script src="https://giscus.app"
+                    data-repo="joethelavaboy/Jeremy"
+                    data-repo-id="R_kgDOUO5PpA"
+                    data-category="General"
+                    data-category-id="DIC_kwDOUO5PpM4DE6cp"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </section>
+
+    </div>
+
+    <!-- BRAND FOOTER -->
+    <footer>
+        <p>Jeremy By Joe the lava boy LLC ™</p>
+    </footer>
 
 </body>
 </html>
