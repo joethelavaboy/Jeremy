@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- FIX 1: Clean and absolute path style sheet link -->
     <link rel="stylesheet" href="https://joethelavaboy.github.io/Jeremy/CSS/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +21,38 @@
             flex-direction: column;
             min-height: 100vh;
         }
+
+        /* NAVIGATION BAR STYLES */
+        .nav-bar {
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #d0d7de;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end; /* Pushes links to the right side */
+            padding: 0.75rem 1.5rem;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #57606a;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover {
+            color: #0969da; /* Changes to blue when hovered */
+        }
         
         /* Banner & Positioning Frame */
         .banner {
@@ -29,7 +60,7 @@
             height: 300px;
             border-bottom: 1px solid #b0b7be;
             overflow: hidden;
-            position: relative; /* Allows text elements to sit on top */
+            position: relative;
         }
         .banner-image {
             width: 100%;
@@ -37,8 +68,6 @@
             object-fit: cover;
             object-position: center;
         }
-        
-        /* FIX 2: Added banner text overlay formatting rules */
         .banner-text {
             position: absolute;
             top: 50%;
@@ -183,6 +212,16 @@
 </head>
 <body>
 
+    <!-- NEW NAVIGATION BAR -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="discussions.html">Discussions</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- TOP BANNER WITH TEXT OVERLAY -->
     <div class="banner">
         <img src="banner.jpg" alt="Jeremy Site Banner" class="banner-image">
@@ -231,7 +270,6 @@
 
     <!-- GISCUS COMMENT SYSTEM LAYER -->
     <div class="comment-section-wrapper">
-        <!-- FIX 3: Restored client endpoint for correct rendering -->
         <script src="https://giscus.app"
                 data-repo="joethelavaboy/Jeremy"
                 data-repo-id="R_kgDOUO5PpA"
