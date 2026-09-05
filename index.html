@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://joethelavaboy.github.io/Jeremy/CSS/style.css">
+    <link rel="stylesheet" href="https://joethelavaboy.github.io/Jeremy/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeremy</title>
+    
+    <!-- Google Automated Search Engine Loader Script -->
+    <script async src="https://google.com"></script>
+
     <style>
-        /* Base Setup */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -35,13 +38,18 @@
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
-            justify-content: flex-end; /* Pushes links to the right side */
-            padding: 0.75rem 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+        }
+        .search-box {
+            width: 300px;
         }
         .nav-links {
             list-style: none;
             display: flex;
             gap: 1.5rem;
+            align-items: center;
         }
         .nav-links a {
             text-decoration: none;
@@ -51,10 +59,10 @@
             transition: color 0.2s ease;
         }
         .nav-links a:hover {
-            color: #0969da; /* Changes to blue when hovered */
+            color: #0969da;
         }
         
-        /* Banner & Positioning Frame */
+        /* BANNER HEADER STYLES */
         .banner {
             width: 100%;
             height: 300px;
@@ -80,7 +88,7 @@
             letter-spacing: -0.02em;
         }
 
-        /* Two-Column Grid Setup */
+        /* MAIN TWO-COLUMN SPLIT GRID */
         .main-container {
             max-width: 1000px;
             width: 100%;
@@ -103,7 +111,7 @@
             gap: 2rem;
         }
 
-        /* Original Text Styles */
+        /* TEXT AND CAROUSEL STYLES */
         .text-block h1 {
             font-size: 2.25rem;
             margin-bottom: 1rem;
@@ -112,8 +120,6 @@
             font-size: 1.1rem;
             color: #57606a;
         }
-
-        /* Interactive Carousel Elements */
         .carousel-box {
             background-color: #ffffff;
             border: 1px solid #d0d7de;
@@ -139,8 +145,6 @@
         .slide.active {
             display: block;
         }
-
-        /* Forward / Backward Buttons */
         .nav-btn {
             position: absolute;
             top: 50%;
@@ -165,8 +169,6 @@
         }
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
-
-        /* Indicator Dots */
         .dots-container {
             display: flex;
             justify-content: center;
@@ -185,6 +187,7 @@
             background-color: #0969da;
         }
 
+        /* BOTTOM DISCUSSION AREA */
         .comment-section-wrapper {
             max-width: 1000px;
             width: 100%;
@@ -201,7 +204,14 @@
             margin-top: auto;
         }
 
+        /* RESPONSIVE LAYOUT SCALING FOR PHONES */
         @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column-reverse;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .search-box { width: 100%; }
             .main-container {
                 flex-direction: column;
                 gap: 2rem;
@@ -212,9 +222,12 @@
 </head>
 <body>
 
-    <!-- NEW NAVIGATION BAR -->
+    <!-- NAVIGATION BAR WITH EMBEDDED GOOGLE SEARCH -->
     <nav class="nav-bar">
         <div class="nav-container">
+            <div class="search-box">
+                <div class="gcse-search"></div>
+            </div>
             <ul class="nav-links">
                 <li><a href="discussions.html">Discussions</a></li>
                 <li><a href="help.html">Help</a></li>
@@ -222,16 +235,16 @@
         </div>
     </nav>
 
-    <!-- TOP BANNER WITH TEXT OVERLAY -->
+    <!-- TOP HEADER BANNER IMAGE -->
     <div class="banner">
         <img src="banner.jpg" alt="Jeremy Site Banner" class="banner-image">
         <div class="banner-text">Jeremy</div>
     </div>
 
-    <!-- MAIN BODY CONTAINER -->
+    <!-- MAIN FRAME CONTAINER -->
     <div class="main-container">
         
-        <!-- LEFT COLUMN: ORIGINAL WEBSITE TEXT DESCRIPTION -->
+        <!-- LEFT COLUMN: ORIGINAL SITE DESCRIPTION -->
         <div class="left-column">
             <div class="text-block">
                 <h1>Jeremy</h1>
@@ -239,14 +252,12 @@
             </div>
         </div>
         
-        <!-- RIGHT COLUMN: IMAGE SCROLLER -->
+        <!-- RIGHT COLUMN: IMAGE SLIDER -->
         <div class="right-column">
             <div class="carousel-box">
-                <!-- Navigation Buttons -->
                 <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&lt;</button>
                 <button class="nav-btn next-btn" onclick="changeSlide(1)">&gt;</button>
 
-                <!-- Slides pointing to uploaded image files -->
                 <div class="carousel-viewport">
                     <img class="slide active" src="your-image1.jpg" alt="Image 1">
                     <img class="slide" src="your-image2.jpg" alt="Image 2">
@@ -255,7 +266,6 @@
                     <img class="slide" src="your-image5.jpg" alt="Image 5">
                 </div>
 
-                <!-- Navigation Dots -->
                 <div class="dots-container">
                     <div class="dot active" onclick="currentSlide(0)"></div>
                     <div class="dot" onclick="currentSlide(1)"></div>
@@ -268,7 +278,7 @@
 
     </div>
 
-    <!-- GISCUS COMMENT SYSTEM LAYER -->
+    <!-- PERSISTENT GISCUS COMMENT PLUG -->
     <div class="comment-section-wrapper">
         <script src="https://giscus.app"
                 data-repo="joethelavaboy/Jeremy"
@@ -287,12 +297,12 @@
         </script>
     </div>
 
-    <!-- COPYRIGHT FOOTER -->
+    <!-- SITE BASE FOOTER -->
     <footer>
         <p>Jeremy By Joe the lava boy LLC ™</p>
     </footer>
 
-    <!-- SCROLLER INTERACTION SCRIPT -->
+    <!-- RUNTIME INTERACTIONS CONTROLLER SCRIPT -->
     <script>
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
@@ -309,6 +319,27 @@
             dots[slideIndex].classList.add('active');
         }
 
+        function changeSlide(n) {
+            slideIndex += n;
+            showSlide(slideIndex);
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+showSlide(slideIndex);}
+                function changeSlide(n) {
+            slideIndex += n;
+            showSlide(slideIndex);
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlide(slideIndex);
+        }
+    </script>
+
+</body>
+</html>
         function changeSlide(n) {
             slideIndex += n;
             showSlide(slideIndex);
