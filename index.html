@@ -1,224 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeremy</title>
-  <style>
-    /* Global Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #202124;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
 
-    /* Mobile Frame Container */
-    .site-container {
-      width: 100%;
-      max-width: 480px;
-      min-height: 100vh;
-      background-color: #ffffff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      position: relative;
-    }
+        .level-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    /* Top Navigation Bar */
-    .nav-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      z-index: 10;
-      color: #ffffff;
-    }
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .icon-btn {
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .site-title-handwritten {
-      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
-      font-size: 22px;
-      font-weight: bold;
-    }
+        .level-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 30px -10px rgba(0, 102, 255, 0.25);
+        }
 
-    /* Hero Header Section */
-    .hero {
-      position: relative;
-      height: 240px;
-      background: #3a3f47;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    /* Placeholder graphic representing the globe/stars background */
-    .hero-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.6;
-    }
-    .hero-title {
-      position: relative;
-      z-index: 2;
-      color: #ffffff;
-      font-size: 48px;
-      font-weight: 300;
-      letter-spacing: 1px;
-    }
+        .img-zoom {
+            transition: transform 0.4s ease;
+        }
 
-    /* Content Area */
-    .content {
-      padding: 32px 24px;
-    }
-    .main-heading {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #202124;
-      margin-bottom: 24px;
-    }
+        .level-card:hover .img-zoom {
+            transform: scale(1.06);
+        }
 
-    /* Image Carousel Component */
-    .carousel {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background-color: #3a3f47;
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .carousel-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.6);
-      color: #ffffff;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .carousel-btn.left { left: 12px; }
-    .carousel-btn.right { right: 12px; }
+        /* Carousel transitions */
+        .carousel-slide {
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+        }
 
-    /* Carousel Navigation Dots */
-    .dots-container {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 32px;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #cccccc;
-    }
-    .dot.active {
-      background-color: #3b719f;
-    }
+        .carousel-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
+        }
 
-    /* Footer Section */
-    .footer {
-      background-color: #3b719f;
-      color: #ffffff;
-      padding: 28px 24px 48px 24px;
-      position: relative;
-    }
-    .footer-text {
-      font-size: 26px;
-      font-weight: 400;
-      line-height: 1.3;
-    }
-    .info-btn {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.3);
-      border: none;
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-  </style>
+        .dot-indicator {
+            transition: all 0.3s ease;
+        }
+
+        .dot-indicator.active {
+            width: 1.75rem;
+            background-color: #ffffff;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between">
 
-  <div class="site-container">
-    <div class="nav-bar">
-      <div class="nav-left">
-        <button class="icon-btn">&#9776;</button>
-        <span class="site-title-handwritten">Jeremy</span>
-      </div>
-      <button class="icon-btn">&#128093;</button>
-    </div>
+    <!-- Top Header -->
+    <header class="bg-white border-b border-blue-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Logo Area: Image Placeholder with NO text -->
+            <a href="#" class="flex-shrink-0 group">
+                <img 
+                    src="/Jeremy/images/unamed.png" 
+                    alt="Logo Placeholder" 
+                    class="h-10 w-auto rounded-lg shadow-sm group-hover:opacity-90 transition-opacity"
+                    onerror="this.src='/Jeremy/images/unamed.png'"
+                />
+            </a>
 
-    <div class="hero">
-      <h1 class="hero-title">Jeremy</h1>
-    </div>
+<!-- Search Bar -->
+            <div class="flex-1 max-w-md mx-2">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-blue-400">
+                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search Maps..." 
+                        class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-blue-100 rounded-full text-sm font-medium text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all shadow-inner"
+                        onkeyup="filterLevels()"
+                    />
+                </div>
+            </div>
 
-    <div class="content">
-      <h2 class="main-heading">Explorer the adventures and fun in Jeremy</h2>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
 
-      <div class="carousel">
-        <button class="carousel-btn left">&#10094;</button>
-        <button class="carousel-btn right">&#10095;</button>
-      </div>
+        <!-- Banner Carousel -->
+        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-blue-100 bg-slate-900 mb-10 group">
+            
+            <!-- Slide Container -->
+            <div id="carouselContainer" class="relative min-h-[220px] sm:min-h-[300px]">
+                
+                <!-- Banner 1 -->
+                <div class="carousel-slide active">
+                    <img 
+                        src="https://placehold.co/1200x400/0052cc/ffffff?text=FEATURED+LEVEL+1" 
+                        alt="Featured Da server Banner" 
+                        class="w-full h-[220px] sm:h-[300px] object-cover"
+                        onerror="this.src='https://placehold.co/1200x400/0052cc/ffffff?text=FEATURED+LEVEL+1'"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-6 sm:p-8">
+                        <div>
+                            <span class="bg-blue-600 text-white text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow-md tracking-wider">Featured</span>
+                            <h2 class="text-white text-2xl sm:text-3xl font-extrabold mt-2">Da server - Featured Experience</h2>
+                            <a href="/Placeholder1" class="inline-block mt-3 px-5 py-2 bg-white text-blue-600 font-bold text-sm rounded-xl shadow hover:bg-blue-50 transition-colors">Play Now</a>
+                        </div>
+                    </div>
+                </div>
 
-      <div class="dots-container">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
+                <!-- Banner 2 -->
+                <div class="carousel-slide">
+                    <img 
+                        src="https://placehold.co/1200x400/0066ff/ffffff?text=FEATURED+LEVEL+3" 
+                        alt="Featured City Banner" 
+                        class="w-full h-[220px] sm:h-[300px] object-cover"
+                        onerror="this.src='https://placehold.co/1200x400/0066ff/ffffff?text=FEATURED+LEVEL+3'"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-6 sm:p-8">
+                        <div>
+                            <span class="bg-blue-500 text-white text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow-md tracking-wider">Trending</span>
+                            <h2 class="text-white text-2xl sm:text-3xl font-extrabold mt-2">City - Popular Arena</h2>
+                            <a href="/Placeholder3" class="inline-block mt-3 px-5 py-2 bg-white text-blue-600 font-bold text-sm rounded-xl shadow hover:bg-blue-50 transition-colors">Play Now</a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="footer">
-      <p class="footer-text">Jeremy By Joe the lava boy LLC™</p>
-      <button class="info-btn">i</button>
-    </div>
-  </div>
+                <!-- Banner 3 -->
+                <div class="carousel-slide">
+                    <img 
+                        src="https://placehold.co/1200x400/0284c7/ffffff?text=FEATURED+LEVEL+2" 
+                        alt="Featured Parkour Banner" 
+                        class="w-full h-[220px] sm:h-[300px] object-cover"
+                        onerror="this.src='https://placehold.co/1200x400/0284c7/ffffff?text=FEATURED+LEVEL+2'"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-6 sm:p-8">
+                        <div>
+                            <span class="bg-sky-500 text-white text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow-md tracking-wider">New</span>
+                            <h2 class="text-white text-2xl sm:text-3xl font-extrabold mt-2">Parkour - Extreme Challenge</h2>
+                            <a href="/Placeholder2" class="inline-block mt-3 px-5 py-2 bg-white text-blue-600 font-bold text-sm rounded-xl shadow hover:bg-blue-50 transition-colors">Play Now</a>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+
+            <!-- Carousel Controls -->
+            <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-sm hover:bg-blue-600 transition-colors shadow">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 text-white flex items-center justify-center backdrop-blur-sm hover:bg-blue-600 transition-colors shadow">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Carousel Indicators -->
+            <div class="absolute bottom-4 right-6 flex items-center gap-2">
+                <button onclick="goToSlide(0)" class="dot-indicator active w-3 h-3 rounded-full bg-white/50 hover:bg-white"></button>
+                <button onclick="goToSlide(1)" class="dot-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white"></button>
+                <button onclick="goToSlide(2)" class="dot-indicator w-3 h-3 rounded-full bg-white/50 hover:bg-white"></button>
+            </div>
+
+        </div>
+
+        <!-- Section Header -->
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight flex items-center gap-2">
+                <span class="w-2.5 h-7 bg-blue-600 rounded-full inline-block"></span>
+                All Levels
+            </h1>
+        </div>
+
+        <!-- 8 Levels Grid -->
+        <div id="levelsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+            <!-- Da server -->
+            <a href="/Placeholder1" class="level-card bg-white rounded-2xl p-3 border border-blue-100 shadow-sm block group" data-title="Da server">
+                <div class="aspect-video w-full bg-slate-100 rounded-xl overflow-hidden">
+                    <img 
+                        src="https://placehold.co/400x300/0052cc/ffffff?text=Level+1" 
+                        alt="Da server Thumbnail" 
+                        class="w-full h-full object-cover img-zoom"
+                        onerror="this.src='https://placehold.co/400x300/0052cc/ffffff?text=Level+1'"
+                    />
+                </div>
+                <div class="pt-3 pb-1 px-1">
+                    <h2 class="font-bold text-slate-800 text-base group-hover:text-blue-600 transition-colors">
+                    Da Server
+                    </h2>
+                </div>
+            </a>
+
+            <!-- Parkour -->
+            <a href="/Placeholder2" class="level-card bg-white rounded-2xl p-3 border border-blue-100 shadow-sm block group" data-title="Parkour">
+                <div class="aspect-video w-full bg-slate-100 rounded-xl overflow-hidden">
+                    <img 
+                        src="https://placehold.co/400x300/0066ff/ffffff?text=Level+2" 
+                        alt="Parkour Thumbnail" 
+                        class="w-full h-full object-cover img-zoom"
+                        onerror="this.src='https://placehold.co/400x300/0066ff/ffffff?text=Level+2'"
+                    />
+                </div>
+                <div class="pt-3 pb-1 px-1">
+                    <h2 class="font-bold text-slate-800 text-base group-hover:text-blue-600 transition-colors">
+                         Parkour
+                    </h2>
+                </div>
+            </a>
+
+            <!-- City -->
+            <a href="/Placeholder3" class="level-card bg-white rounded-2xl p-3 border border-blue-100 shadow-sm block group" data-title="City">
+                <div class="aspect-video w-full bg-slate-100 rounded-xl overflow-hidden">
+                    <img 
+                        src="https://placehold.co/400x300/2563eb/ffffff?text=Level+3" 
+                        alt="City Thumbnail" 
+                        class="w-full h-full object-cover img-zoom"
+                        onerror="this.src='https://placehold.co/400x300/2563eb/ffffff?text=Level+3'"
+                    />
+                </div>
+                <div class="pt-3 pb-1 px-1">
+                    <h2 class="font-bold text-slate-800 text-base group-hover:text-blue-600 transition-colors">
+                        Coming soon
+                    </h2>
+                </div>
+            </a>
+            <!-- Add new levels here -->
+           
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="noResults" class="hidden text-center py-12 bg-white rounded-2xl border border-blue-100 my-4">
+            <i class="fa-solid fa-magnifying-glass text-4xl text-blue-300 mb-3"></i>
+            <p class="text-slate-500 font-semibold text-base">No matching Maps found.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-blue-100 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-xs font-semibold text-slate-400">
+                © 2026 JTLB. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Banner Carousel Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot-indicator');
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let newIndex = (currentSlide + 1) % slides.length;
+            showSlide(newIndex);
+            resetTimer();
+        }
+
+        function prevSlide() {
+            let newIndex = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(newIndex);
+            resetTimer();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetTimer();
+        }
+
+        function startTimer() {
+            slideInterval = setInterval(nextSlide, 4500);
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            startTimer();
+        }
+
+function filterLevels() {
+    const input = document.getElementById('searchInput');
+    const query = input ? input.value.toLowerCase().trim() : '';
+    const cards = document.querySelectorAll('#levelsGrid .level-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        // Grab attribute or card text and force to lowercase
+        const titleAttr = card.getAttribute('data-title') || '';
+        const cardText = card.textContent || '';
+        const combinedText = (titleAttr + ' ' + cardText).toLowerCase();
+
+        // Show card if search is empty OR matches the first letter
+        if (query === '' || combinedText.includes(query)) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Toggle No Results screen
+    const noResults = document.getElementById('noResults');
+    if (noResults) {
+        if (visibleCount === 0 && query !== '') {
+            noResults.classList.remove('hidden');
+        } else {
+            noResults.classList.add('hidden');
+        }
+    }
+}
+    </script>
 </body>
 </html>
