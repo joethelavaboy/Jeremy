@@ -1,1 +1,412 @@
-Placetheholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da Server - Jeremy Games</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/Jeremy/favicon.ico">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .tab-btn {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: #38bdf8;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #38bdf8;
+            border-radius: 9999px;
+        }
+
+        .game-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Top Header -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Left: Back Button & Logo -->
+            <div class="flex items-center gap-4">
+                <a href="/Jeremy/" class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-sm font-semibold transition-colors border border-slate-700">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                    <span>Back</span>
+                </a>
+                <a href="/Jeremy/" class="flex-shrink-0">
+                    <img 
+                        src="/Jeremy/images/unnamed.png" 
+                        alt="Jeremy Games Logo" 
+                        class="h-9 w-auto object-contain"
+                        onerror="this.src='https://placehold.co/150x40/0284c7/ffffff?text=JEREMY'"
+                    />
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+
+        <!-- Roblox-style Hero Layout -->
+        <div class="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-xl mb-6">
+            
+            <!-- Banner Image Section -->
+            <div class="relative h-44 sm:h-64 md:h-80 w-full bg-slate-950 overflow-hidden">
+                <img 
+                    src="https://placehold.co/1200x400/0f172a/38bdf8?text=DA+SERVER+BANNER" 
+                    alt="Game Banner" 
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://placehold.co/1200x400/0052cc/ffffff?text=GAME+BANNER'"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90"></div>
+            </div>
+
+            <!-- Game Info Bar & Overlapping Cover -->
+            <div class="px-4 sm:px-8 pb-6 relative">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 -mt-16 sm:-mt-20 md:-mt-24 mb-6">
+                    
+                    <!-- Cover Icon + Title Area -->
+                    <div class="flex flex-col sm:flex-row items-center sm:items-end gap-4 text-center sm:text-left">
+                        <!-- Square Cover Icon -->
+                        <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl overflow-hidden border-4 border-slate-900 bg-slate-800 shadow-2xl flex-shrink-0 relative">
+                            <img 
+                                src="https://placehold.co/400x400/0052cc/ffffff?text=Cover+Art" 
+                                alt="Game Cover" 
+                                class="w-full h-full object-cover"
+                                onerror="this.src='https://placehold.co/400x400/0052cc/ffffff?text=Game+Cover'"
+                            />
+                        </div>
+
+                        <!-- Title and Author -->
+                        <div class="mb-1">
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">Da server</h1>
+                            <p class="text-sm font-semibold text-slate-400 mt-1">
+                                By <a href="/JTLB" class="text-sky-400 hover:text-sky-300 hover:underline">JTLB</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Full Image Play Button & Quick Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full md:w-auto">
+                        
+                        <!-- Image Play Button linking straight to game page -->
+                        <a href="/Jeremy/DaServer/play.html" class="w-full sm:w-auto inline-block group focus:outline-none">
+                            <img 
+                                src="https://placehold.co/220x65/22c55e/ffffff?text=%E2%96%B6+PLAY" 
+                                alt="Play Now Button" 
+                                class="w-full sm:w-56 h-auto max-h-16 object-contain rounded-xl transition-all group-hover:scale-105 active:scale-95 group-hover:brightness-110 shadow-lg"
+                                onerror="this.src='https://placehold.co/220x65/22c55e/ffffff?text=PLAY+NOW'"
+                            />
+                        </a>
+
+                        <!-- Share Button -->
+                        <button 
+                            onclick="openShareMenu()"
+                            class="w-full sm:w-auto p-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-2 font-semibold text-sm"
+                            title="Share Game"
+                        >
+                            <i class="fa-solid fa-share-nodes text-lg"></i>
+                            <span class="sm:hidden">Share</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-center sm:text-left">
+                    <div class="flex items-center justify-center sm:justify-start gap-3">
+                        <i class="fa-solid fa-thumbs-up text-sky-400 text-xl"></i>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Rating</p>
+                            <p class="text-base font-bold text-slate-200">94%</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center sm:justify-start gap-3">
+                        <i class="fa-solid fa-star text-amber-400 text-xl"></i>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Favorites</p>
+                            <p class="text-base font-bold text-slate-200">1.2K</p>
+                        </div>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1 flex items-center justify-center sm:justify-start gap-3">
+                        <i class="fa-solid fa-clock text-emerald-400 text-xl"></i>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Updated</p>
+                            <p class="text-base font-bold text-slate-200">2 days ago</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Lower Navigation Tabs -->
+        <div class="flex border-b border-slate-800 mb-6 gap-6 px-2">
+            <button onclick="switchTab('about')" id="tab-about" class="tab-btn active pb-3 text-sm font-bold tracking-wide">
+                About
+            </button>
+            <button onclick="switchTab('store')" id="tab-store" class="tab-btn pb-3 text-sm font-bold text-slate-400 hover:text-slate-200 tracking-wide">
+                Store
+            </button>
+        </div>
+
+        <!-- Tab Content 1: About Section -->
+        <div id="content-about" class="space-y-6">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Main Description Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-md">
+                        <h2 class="text-xl font-bold text-white mb-3">Description</h2>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base whitespace-pre-line">
+                            Welcome to **Da server**! This is the main central hub for all our games and levels. Explore interactive features, team up with friends, test out custom mechanics, and teleport to new custom-built worlds!
+
+                            🌟 **What's New in this Update:**
+                            • Brand new main spawn lobby
+                            • Added secret hidden zones
+                            • Earn Jcoins by exploring hidden areas
+                            • Improved movement controls and UI performance
+
+                            Be sure to leave a like and favorite if you enjoyed playing!
+                        </p>
+                    </div>
+
+                    <!-- Game Controls Guide -->
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-md">
+                        <h2 class="text-xl font-bold text-white mb-4">Game Controls</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            <div class="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                                <span class="text-slate-400 font-medium">Move</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-200 rounded font-mono text-xs border border-slate-700">W A S D / Arrow Keys</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                                <span class="text-slate-400 font-medium">Jump</span>
+                                <span class="px-2 py-1 bg-slate-800 text-slate-200 rounded font-mono text-xs border border-slate-700">Spacebar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Meta Info Sidebar -->
+                <div class="space-y-6">
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-md space-y-4">
+                        <h2 class="text-xl font-bold text-white mb-2">Game Details</h2>
+                        
+                        <div class="flex justify-between items-center text-sm py-2 border-b border-slate-800">
+                            <span class="text-slate-400 font-medium">Developer</span>
+                            <a href="/JTLB" class="text-sky-400 font-semibold hover:underline">JTLB</a>
+                        </div>
+                        <div class="flex justify-between items-center text-sm py-2 border-b border-slate-800">
+                            <span class="text-slate-400 font-medium">Genre</span>
+                            <span class="text-slate-200 font-semibold">Adventure / Lobby</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm py-2 border-b border-slate-800">
+                            <span class="text-slate-400 font-medium">Created</span>
+                            <span class="text-slate-200 font-semibold">Jan 12, 2026</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm py-2">
+                            <span class="text-slate-400 font-medium">Primary Currency</span>
+                            <span class="text-amber-400 font-bold flex items-center gap-1">
+                                <i class="fa-solid fa-coins text-xs"></i> Jcoins
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Tab Content 2: Store Section -->
+        <div id="content-store" class="hidden space-y-6">
+            <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-md">
+                <h2 class="text-xl font-bold text-white mb-4">Passes & Items</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    
+                    <!-- Item 1 -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                        <div class="w-16 h-16 bg-blue-600/20 rounded-lg border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-bold text-white text-sm truncate">Speed Boost</h3>
+                            <p class="text-xs text-slate-400">2x Walking Speed</p>
+                            <button class="mt-2 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs rounded-lg transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-coins"></i> 100 Jcoins
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                        <div class="w-16 h-16 bg-purple-600/20 rounded-lg border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-bold text-white text-sm truncate">VIP Status</h3>
+                            <p class="text-xs text-slate-400">Exclusive VIP Tag</p>
+                            <button class="mt-2 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs rounded-lg transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-coins"></i> 500 Jcoins
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Native Share Modal -->
+    <div id="shareModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md shadow-2xl relative space-y-4">
+            
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-white">Share Game</h3>
+                <button onclick="closeShareMenu()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-400">Copy the URL below to share this game with your friends:</p>
+
+            <div class="flex items-center gap-2 bg-slate-950 p-2 rounded-xl border border-slate-800">
+                <input 
+                    type="text" 
+                    id="shareUrlInput" 
+                    readonly 
+                    class="bg-transparent text-slate-300 text-xs flex-1 px-2 focus:outline-none" 
+                />
+                <button 
+                    onclick="copyShareLink()" 
+                    id="copyBtn" 
+                    class="px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-lg transition-colors"
+                >
+                    Copy
+                </button>
+            </div>
+
+            <!-- Social Quick Links -->
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="shareToTwitter()" class="py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 border border-slate-700">
+                    <i class="fa-brands fa-x-twitter"></i> Twitter / X
+                </button>
+                <button onclick="shareToNative()" class="py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 border border-slate-700">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i> More Options
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-xs font-semibold text-slate-500">
+                © 2026 JTLB. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Tab Switcher
+        function switchTab(tabName) {
+            const aboutContent = document.getElementById('content-about');
+            const storeContent = document.getElementById('content-store');
+            const tabAbout = document.getElementById('tab-about');
+            const tabStore = document.getElementById('tab-store');
+
+            if (tabName === 'about') {
+                aboutContent.classList.remove('hidden');
+                storeContent.classList.add('hidden');
+                tabAbout.classList.add('active', 'text-sky-400');
+                tabAbout.classList.remove('text-slate-400');
+                tabStore.classList.remove('active', 'text-sky-400');
+                tabStore.classList.add('text-slate-400');
+            } else {
+                storeContent.classList.remove('hidden');
+                aboutContent.classList.add('hidden');
+                tabStore.classList.add('active', 'text-sky-400');
+                tabStore.classList.remove('text-slate-400');
+                tabAbout.classList.remove('active', 'text-sky-400');
+                tabAbout.classList.add('text-slate-400');
+            }
+        }
+
+        // Share Menu Dialog Handlers
+        function openShareMenu() {
+            const shareUrlInput = document.getElementById('shareUrlInput');
+            shareUrlInput.value = window.location.href;
+            document.getElementById('shareModal').classList.remove('hidden');
+        }
+
+        function closeShareMenu() {
+            document.getElementById('shareModal').classList.add('hidden');
+        }
+
+        function copyShareLink() {
+            const shareUrlInput = document.getElementById('shareUrlInput');
+            shareUrlInput.select();
+            navigator.clipboard.writeText(shareUrlInput.value);
+            
+            const copyBtn = document.getElementById('copyBtn');
+            copyBtn.innerText = 'Copied!';
+            copyBtn.classList.replace('bg-sky-600', 'bg-emerald-600');
+            
+            setTimeout(() => {
+                copyBtn.innerText = 'Copy';
+                copyBtn.classList.replace('bg-emerald-600', 'bg-sky-600');
+            }, 2000);
+        }
+
+        function shareToTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out Da server on Jeremy Games!');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+
+        function shareToNative() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Da server - Jeremy Games',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                copyShareLink();
+            }
+        }
+    </script>
+</body>
+</html>
