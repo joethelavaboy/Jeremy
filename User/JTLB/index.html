@@ -1,1 +1,427 @@
-Coming soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JTLB - Profile - Jeremy Games</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/Jeremy/favicon.ico">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+
+        .tab-btn {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: #2563eb;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 9999px;
+        }
+
+        .item-card {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 102, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Top Header -->
+    <header class="bg-white border-b border-blue-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Left: Back Button & Logo -->
+            <div class="flex items-center gap-4">
+                <a href="/Jeremy/" class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 rounded-full text-sm font-semibold transition-colors border border-slate-200">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                    <span>Back</span>
+                </a>
+                <a href="/Jeremy/" class="flex-shrink-0">
+                    <img 
+                        src="/Jeremy/images/unnamed.png" 
+                        alt="Jeremy Games Logo" 
+                        class="h-9 w-auto object-contain"
+                        onerror="this.src='https://placehold.co/150x40/0284c7/ffffff?text=JEREMY'"
+                    />
+                </a>
+            </div>
+
+            <!-- Right Controls -->
+            <div class="flex items-center gap-3">
+                <a href="/Jeremy/Store/" class="px-4 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-full text-sm font-bold transition-colors border border-amber-200 flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-coins text-amber-500"></i>
+                    <span>Store</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+        <!-- User Profile Hero Header -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-blue-100 shadow-md mb-8">
+            
+            <!-- Profile Top Banner Background -->
+            <div class="h-32 sm:h-48 w-full bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 relative"></div>
+
+            <!-- Profile Info & Avatar Overlay -->
+            <div class="px-6 sm:px-8 pb-6 relative">
+                
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 -mt-16 sm:-mt-20 mb-6">
+                    
+                    <!-- Avatar & Name Area -->
+                    <div class="flex flex-col sm:flex-row items-center sm:items-end gap-5 text-center sm:text-left">
+                        <!-- Avatar Container -->
+                        <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-4 border-white bg-slate-100 shadow-xl flex-shrink-0 relative group">
+                            <img 
+                                src="https://placehold.co/300x300/0052cc/ffffff?text=JTLB" 
+                                alt="User Avatar" 
+                                class="w-full h-full object-cover"
+                                onerror="this.src='https://placehold.co/300x300/0052cc/ffffff?text=User'"
+                            />
+                            <span class="absolute bottom-2 right-2 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full" title="Online"></span>
+                        </div>
+
+                        <!-- Display Name & Handle -->
+                        <div class="mb-1">
+                            <div class="flex items-center justify-center sm:justify-start gap-2">
+                                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">JTLB</h1>
+                                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200">
+                                    <i class="fa-solid fa-code text-[10px] mr-1"></i> Developer
+                                </span>
+                            </div>
+                            <p class="text-sm font-semibold text-slate-400 mt-0.5">@JTLB_Official</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center justify-center gap-3 w-full sm:w-auto">
+                        <button 
+                            onclick="openShareProfile()" 
+                            class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl border border-slate-200 transition-colors font-semibold text-sm flex items-center gap-2 shadow-xs"
+                        >
+                            <i class="fa-solid fa-share-nodes text-blue-600"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Profile Statistics Row -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-slate-50 rounded-xl border border-blue-100 text-center">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Plays</p>
+                        <p class="text-lg font-bold text-slate-800 mt-0.5">24.5K</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Jcoins Balance</p>
+                        <p class="text-lg font-bold text-amber-600 mt-0.5 flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-coins text-amber-500 text-sm"></i> 1,450
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Joined</p>
+                        <p class="text-lg font-bold text-slate-800 mt-0.5">Jan 2026</p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Friends</p>
+                        <p class="text-lg font-bold text-slate-800 mt-0.5">128</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex border-b border-blue-100 mb-6 gap-6 px-2 overflow-x-auto">
+            <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn active pb-3 text-sm font-bold tracking-wide flex-shrink-0">
+                Overview
+            </button>
+            <button onclick="switchTab('games')" id="tab-games" class="tab-btn pb-3 text-sm font-bold text-slate-400 hover:text-slate-600 tracking-wide flex-shrink-0">
+                Created Games (3)
+            </button>
+            <button onclick="switchTab('badges')" id="tab-badges" class="tab-btn pb-3 text-sm font-bold text-slate-400 hover:text-slate-600 tracking-wide flex-shrink-0">
+                Badges
+            </button>
+        </div>
+
+        <!-- Tab 1: Overview -->
+        <div id="content-overview" class="space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Left: Bio & Highlights -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm">
+                        <h2 class="text-xl font-bold text-slate-800 mb-3">About</h2>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Hey there! I'm **JTLB**, game developer and world creator on Jeremy Games. I specialize in building interactive lobbies, parkour maps, and custom multiplayer experiences. Feel free to check out my latest maps below or join in on one of my server rooms!
+                        </p>
+                    </div>
+
+                    <!-- Recent Activity Section -->
+                    <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm">
+                        <h2 class="text-xl font-bold text-slate-800 mb-4">Featured Map</h2>
+                        <div class="bg-slate-50 border border-blue-100 rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-center">
+                            <img 
+                                src="https://placehold.co/400x300/0052cc/ffffff?text=Da+Server" 
+                                alt="Da Server Map" 
+                                class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0"
+                            />
+                            <div class="flex-1 text-center sm:text-left">
+                                <span class="text-xs font-extrabold text-blue-600 uppercase tracking-wider">Main Lobby</span>
+                                <h3 class="text-lg font-bold text-slate-800">Da server</h3>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-2">The main central hub for all our games and levels. Explore interactive features and secret zones!</p>
+                                <a href="/Jeremy/DaServer/" class="inline-block mt-3 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg transition-colors">
+                                    Play Map
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Info -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm space-y-4">
+                        <h2 class="text-xl font-bold text-slate-800 mb-2">User Info</h2>
+                        <div class="flex justify-between items-center text-sm py-2 border-b border-slate-100">
+                            <span class="text-slate-500 font-medium">Role</span>
+                            <span class="text-slate-800 font-bold">Main Creator</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm py-2 border-b border-slate-100">
+                            <span class="text-slate-500 font-medium">Status</span>
+                            <span class="text-emerald-600 font-bold flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Online
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm py-2">
+                            <span class="text-slate-500 font-medium">Location</span>
+                            <span class="text-slate-800 font-semibold">Global Server</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tab 2: Created Games -->
+        <div id="content-games" class="hidden space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                
+                <!-- Game 1 -->
+                <a href="/Jeremy/DaServer/" class="item-card bg-white rounded-2xl p-3 border border-blue-100 shadow-sm block group">
+                    <div class="aspect-video w-full bg-slate-100 rounded-xl overflow-hidden mb-3">
+                        <img 
+                            src="https://placehold.co/400x300/0052cc/ffffff?text=Da+Server" 
+                            alt="Da Server" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                    <div class="px-1">
+                        <h3 class="font-bold text-slate-800 text-base group-hover:text-blue-600 transition-colors">Da server</h3>
+                        <p class="text-xs font-semibold text-slate-400 mt-1">Main Lobby Hub</p>
+                    </div>
+                </a>
+
+                <!-- Game 2 -->
+                <a href="/Jeremy/Parkour/" class="item-card bg-white rounded-2xl p-3 border border-blue-100 shadow-sm block group">
+                    <div class="aspect-video w-full bg-slate-100 rounded-xl overflow-hidden mb-3">
+                        <img 
+                            src="https://placehold.co/400x300/0066ff/ffffff?text=Parkour" 
+                            alt="Parkour" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                    <div class="px-1">
+                        <h3 class="font-bold text-slate-800 text-base group-hover:text-blue-600 transition-colors">Parkour</h3>
+                        <p class="text-xs font-semibold text-slate-400 mt-1">Obstacle Course</p>
+                    </div>
+                </a>
+
+                <!-- Game 3 -->
+                <a href="/Jeremy/Help.html" class="item-card bg-white rounded-2xl p-3 border border-blue-100 shadow-sm block group">
+                    <div class="aspect-video w-full bg-slate-100 rounded-xl overflow-hidden mb-3">
+                        <img 
+                            src="https://placehold.co/400x300/2563eb/ffffff?text=Coming+Soon" 
+                            alt="Coming Soon" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                    <div class="px-1">
+                        <h3 class="font-bold text-slate-800 text-base group-hover:text-blue-600 transition-colors">City - Coming Soon</h3>
+                        <p class="text-xs font-semibold text-slate-400 mt-1">In Development</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Tab 3: Badges -->
+        <div id="content-badges" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-800 mb-4">Player Badges</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    
+                    <div class="bg-slate-50 p-4 rounded-xl border border-blue-100 text-center flex flex-col items-center">
+                        <div class="w-14 h-14 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center text-2xl mb-2 shadow-xs border border-amber-200">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-xs">Game Creator</h4>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Published 3+ maps</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-blue-100 text-center flex flex-col items-center">
+                        <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mb-2 shadow-xs border border-blue-200">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-xs">Verified Developer</h4>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Official Staff</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-blue-100 text-center flex flex-col items-center">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mb-2 shadow-xs border border-emerald-200">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-xs">Beta Tester</h4>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Played early builds</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Share Profile Modal -->
+    <div id="shareModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border border-blue-100 rounded-2xl p-6 w-full max-w-md shadow-2xl relative space-y-4">
+            
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-bold text-slate-800">Share Profile</h3>
+                <button onclick="closeShareProfile()" class="text-slate-400 hover:text-slate-600 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-500">Copy link to share this profile page:</p>
+
+            <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                <input 
+                    type="text" 
+                    id="shareUrlInput" 
+                    readonly 
+                    class="bg-transparent text-slate-700 text-xs flex-1 px-2 focus:outline-none" 
+                />
+                <button 
+                    onclick="copyProfileLink()" 
+                    id="copyBtn" 
+                    class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg transition-colors shadow-xs"
+                >
+                    Copy
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-blue-100 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-xs font-semibold text-slate-400">
+                © 2026 JTLB. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Tab Switcher Logic
+        function switchTab(tabName) {
+            const overview = document.getElementById('content-overview');
+            const games = document.getElementById('content-games');
+            const badges = document.getElementById('content-badges');
+
+            const tabOverview = document.getElementById('tab-overview');
+            const tabGames = document.getElementById('tab-games');
+            const tabBadges = document.getElementById('tab-badges');
+
+            // Hide all tabs first
+            overview.classList.add('hidden');
+            games.classList.add('hidden');
+            badges.classList.add('hidden');
+
+            [tabOverview, tabGames, tabBadges].forEach(t => {
+                t.classList.remove('active', 'text-blue-600');
+                t.classList.add('text-slate-400');
+            });
+
+            if (tabName === 'overview') {
+                overview.classList.remove('hidden');
+                tabOverview.classList.add('active', 'text-blue-600');
+                tabOverview.classList.remove('text-slate-400');
+            } else if (tabName === 'games') {
+                games.classList.remove('hidden');
+                tabGames.classList.add('active', 'text-blue-600');
+                tabGames.classList.remove('text-slate-400');
+            } else if (tabName === 'badges') {
+                badges.classList.remove('hidden');
+                tabBadges.classList.add('active', 'text-blue-600');
+                tabBadges.classList.remove('text-slate-400');
+            }
+        }
+
+        // Share Dialog Functions
+        function openShareProfile() {
+            const shareUrlInput = document.getElementById('shareUrlInput');
+            shareUrlInput.value = window.location.href;
+            document.getElementById('shareModal').classList.remove('hidden');
+        }
+
+        function closeShareProfile() {
+            document.getElementById('shareModal').classList.add('hidden');
+        }
+
+        function copyProfileLink() {
+            const shareUrlInput = document.getElementById('shareUrlInput');
+            shareUrlInput.select();
+            navigator.clipboard.writeText(shareUrlInput.value);
+            
+            const copyBtn = document.getElementById('copyBtn');
+            copyBtn.innerText = 'Copied!';
+            copyBtn.classList.replace('bg-blue-600', 'bg-emerald-600');
+            
+            setTimeout(() => {
+                copyBtn.innerText = 'Copy';
+                copyBtn.classList.replace('bg-emerald-600', 'bg-blue-600');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
